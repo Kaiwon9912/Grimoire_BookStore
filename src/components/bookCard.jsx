@@ -1,18 +1,22 @@
 import { Link } from 'react-router-dom'
 
 const BookCard = ({ book }) => (
-  <Link to={`/book/${book.id}`} className="relative w-40 group transition rounded-xl overflow-hidden border-r-2">
-    <img
-      src={book.cover_url}
-      alt={book.title}
-      className="h-64 w-full object-cover group-hover: transition-transform duration-300"
-    />
-    
-    {/* Overlay hiển thị khi hover */}
-    <div className="absolute inset-0 bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 space-y-1">
-      <h3 className="font-semibold text-base">{book.title}</h3>
-      <p className="text-sm text-gray-200">{book.author}</p>
-      <p className="text-blue-400 font-bold">{book.price?.toLocaleString()} ₫</p>
+  <Link to={`/book/${book.id}`} className="relative w-40 group transition rounded-xl border-r-2">
+    <div className="book-card-container h-64 relative">
+
+      <div className="absolute inset-0 bg-slate-50 flex flex-col justify-center p-3 space-y-1 z-10">
+        <h3 className="font-semibold text-base text-black">{book.title}</h3>
+        <p className="text-sm text-gray-600">{book.author}</p>
+        <p className="text-blue-600 font-bold">{book.price?.toLocaleString()} ₫</p>
+      </div>
+
+      <div className="book-cover absolute inset-0 z-20 group-hover:-translate-x-40 group-hover:-scale-x-100 transition-transform duration-300">
+        <img
+          src={book.cover_url}
+          alt={book.title}
+          className="h-full w-full object-cover"
+        />
+      </div>
     </div>
   </Link>
 )
