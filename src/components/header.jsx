@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import { BookText, Search } from 'lucide-react'
 
 const Header = () => (
-  <header className="bg-black shadow px-16 py-4 flex justify-between items-center border-b-2 border-green-600">
-    <Link to="/" className="text-3xl font-bold text-blue-600 flex items-center font-bangers text-green-400">
+  <header className=" bg-black shadow px-16 py-4 flex justify-between items-center border-b-2 border-green-600">
+    <Link to="/" className="text-3xl font-bold flex items-center font-bangers text-green-400">
       <BookText size={28} className='inline mr-4' />Grimoire
     </Link>
-    <div className="relative flex items-center w-96 mx-4">
+    <div className="relative flex items-center w-96 mx-4 ">
       <input
         type="text"
         placeholder="Tìm kiếm..."

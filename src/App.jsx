@@ -7,23 +7,25 @@ import BookDetail from './pages/detail'
 import './App.css'
 import { AnimatePresence } from 'framer-motion';
 import Chatbot from './components/chatbot'
+import CategoriesPage from './pages/categories'
 function App() {
 
 
   return (
     <>
      <Router>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen  flex flex-col">
         <Header />
         <main className="flex-grow">
         <AnimatePresence mode="wait">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/book/:id" element={<BookDetail />} />
-            {/* Bạn có thể thêm: categories, login, v.v. */}
+            <Route path="/categories" element={<CategoriesPage />} />
+            
           </Routes>
           </AnimatePresence>
-          <Chatbot />
+        
         </main>
         <Footer />
       </div>

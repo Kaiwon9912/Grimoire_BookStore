@@ -3,7 +3,7 @@ import { useKeenSlider } from 'keen-slider/react'
 import { supabase } from '../lib/supabaseClient'
 import BookCard from '../components/bookCard'
 import 'keen-slider/keen-slider.min.css'
-
+import { useFetch } from '../hooks/useFetch'
 // Autoplay plugin
 const Autoplay = (slider) => {
   let timeout
@@ -60,25 +60,15 @@ const bannerImages = [
 ]
 
 const Home = () => {
-  const [newBooks, setNewBooks] = useState([])
   const [sliderRef] = useKeenSlider(
     { loop: true, slides: { perView: 1 } },
     [Autoplay]
   )
 
-  useEffect(() => {
-    fetchBooks()
-  }, [])
-
-  const fetchBooks = async () => {
-    const { data: newData } = await supabase
-      .from('Book')
-      .select('*')
-      .order('created_at', { ascending: false })
-      .limit(8)
-
-    setNewBooks(newData || [])
-  }
+  const { data: newBooks, loading } = useFetch('Book', {
+    orderBy: { column: 'publish_date', ascending: false },
+    limit: 8,
+  })
 
   return (
     <div className="space-y-10">
@@ -104,13 +94,17 @@ const Home = () => {
       </div>
 
       {/* Sách mới phát hành */}
-      <section className="px-4 md:px-16   rounded-lg shadow-lg">
+      <section className="px-4 md:px-16 rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold mb-4 text-white font-bangers tracking-wide">📖 Sách mới phát hành</h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {newBooks.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-white">Đang tải sách...</p>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {newBooks.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))}
+          </div>
+        )}
       </section>
     </div>
   )

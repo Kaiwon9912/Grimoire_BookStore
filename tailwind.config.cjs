@@ -11,6 +11,7 @@ module.exports = {
         bangers: ['Bangers', 'cursive'],
         luckiest: ['Luckiest Guy', 'cursive'],
         greatvb: ['Great Vibes', 'cursive'],
+        playwrite: ['Play Write', 'cursive']
       }
       
       ,
