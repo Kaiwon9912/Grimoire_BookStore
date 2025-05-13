@@ -64,9 +64,7 @@ const BookDetail = () => {
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5, delay: 0.3 }}
   >
-{book?.title && book?.description && (
-  <Chatbot context={book} />
-)}
+    {book.title && <Chatbot context={book} />}
     <div>
       <h1 className="text-3xl font-bold text-white font-bangers tracking-wide">
         {book.title}
@@ -116,7 +114,7 @@ const BookDetail = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <p className="text-gray-300 mt-4">{book.description}</p>
+        <p className="whitespace-pre-line text-ellipsis  text-gray-300 mt-4">{book.description}</p>
 
       </motion.div>
     </motion.div>

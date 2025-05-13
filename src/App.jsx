@@ -6,8 +6,8 @@ import Home from './pages/home'
 import BookDetail from './pages/detail'
 import './App.css'
 import { AnimatePresence } from 'framer-motion';
-import Chatbot from './components/chatbot'
 import CategoriesPage from './pages/categories'
+import LandingPage from './pages/landing'
 function App() {
 
 
@@ -19,7 +19,8 @@ function App() {
         <main className="flex-grow">
         <AnimatePresence mode="wait">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/categories" element={<CategoriesPage />} />
             

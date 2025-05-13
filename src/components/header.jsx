@@ -15,7 +15,7 @@ const Header = () => (
       <Search size={20} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
     </div>
     <nav className="space-x-10 text-white font-semibold font-bangers tracking-wider text-lg">
-      <Link to="/" className="hover:underline">Trang chủ</Link>
+      <Link to="/home" className="hover:underline">Trang chủ</Link>
       <Link to="/categories" className="hover:underline">Thể loại</Link>
       <Link to="/login" className="hover:underline">Đăng nhập</Link>
     </nav>

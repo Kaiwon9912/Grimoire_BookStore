@@ -10,7 +10,6 @@ const Chatbot = ({ context }) => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [displayedText, setDisplayedText] = useState('');
   const chatEndRef = useRef(null);
 
   const suggestions = [
@@ -26,21 +25,7 @@ const Chatbot = ({ context }) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, displayedText]);
-
-  const typeText = (text, callback) => {
-    let index = 0;
-    setDisplayedText('');
-
-    const interval = setInterval(() => {
-      setDisplayedText((prev) => prev + text[index]);
-      index++;
-      if (index === text.length) {
-        clearInterval(interval);
-        callback();
-      }
-    }, 30); // tốc độ gõ
-  };
+  }, [messages]);
 
   const handleSendMessage = async (presetText) => {
     const textToSend = presetText || inputText;
@@ -74,16 +59,13 @@ const Chatbot = ({ context }) => {
 
     const botReply = await getGroqResponse(groqMessages);
 
-    typeText(botReply, () => {
-      const botMessage = {
-        id: messages.length + 2,
-        text: botReply,
-        isBot: true,
-      };
-      setMessages((prev) => [...prev, botMessage]);
-      setDisplayedText('');
-      setIsLoading(false);
-    });
+    const botMessage = {
+      id: messages.length + 2,
+      text: botReply,
+      isBot: true,
+    };
+    setMessages((prev) => [...prev, botMessage]);
+    setIsLoading(false);
   };
 
   return (
@@ -114,10 +96,10 @@ const Chatbot = ({ context }) => {
             <div className="flex-1 flex bg-amber-900 rounded-lg shadow-2xl p-4 transform rotate-1">
               <div className="w-8 bg-amber-800 rounded-l-lg shadow-inner"></div>
 
-              <div className="flex-1 bg-amber-100 rounded-lg p-4  shadow-inner">
+              <div className="flex-1 bg-amber-100 rounded-lg p-4 shadow-inner">
                 {/* Header */}
                 <div className="bg-amber-900 p-3 rounded-t-lg flex justify-between items-center">
-                  <h3 className="text-xl font-serif text-white">Grimoire Bot</h3>
+                  <h3 className="text-xl font-luckiest text-white">Grimoire Bot</h3>
                   <motion.button
                     className="text-white"
                     onClick={() => setIsOpen(false)}
@@ -147,7 +129,7 @@ const Chatbot = ({ context }) => {
                 )}
 
                 {/* Chat Messages */}
-                <div className="flex-1 p-4 overflow-y-scroll  h-96 rounded-b-lg space-y-2">
+                <div className="flex-1 p-4 overflow-y-scroll h-96 rounded-b-lg space-y-2">
                   {messages.map((message) => (
                     <motion.div
                       key={message.id}
@@ -157,7 +139,7 @@ const Chatbot = ({ context }) => {
                       transition={{ duration: 0.3 }}
                     >
                       <div
-                        className={`max-w-[70%] p-2 rounded-lg font-playwrite ${
+                        className={`max-w-[70%] p-2 rounded-lg font-mono ${
                           message.isBot
                             ? 'bg-amber-200 text-gray-800'
                             : 'bg-amber-800 text-white'
@@ -168,21 +150,9 @@ const Chatbot = ({ context }) => {
                     </motion.div>
                   ))}
 
-                  {displayedText && (
-                    <motion.div
-                      className="flex justify-start"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                    >
-                      <div className="max-w-[70%] p-2 rounded-lg font-serif bg-amber-200 text-gray-800">
-                        {displayedText}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {isLoading && !displayedText && (
+                  {isLoading && (
                     <div className="flex justify-start">
-                      <div className="max-w-[70%] p-2 rounded-lg font-serif bg-amber-200 text-gray-800 animate-pulse">
+                      <div className="max-w-[70%] p-2 rounded-lg font-pp bg-amber-200 text-gray-800 animate-pulse">
                         Đang soạn phản hồi...
                       </div>
                     </div>
