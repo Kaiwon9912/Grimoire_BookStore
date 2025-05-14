@@ -48,7 +48,7 @@ const BookDetail = () => {
           className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors font-semibold"
         >
           ← Quay trở lại
-        </button>
+          </button>
       </div>
 
 
