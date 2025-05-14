@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useFetch } from '../hooks/useFetch';
+import { useNavigate, useParams } from 'react-router-dom';
 import Chatbot from '../components/chatbot';
+import { useFetch } from '../hooks/useFetch';
 import { useCart } from './cartContext';
-import { useNavigate } from 'react-router-dom';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -48,7 +47,7 @@ const BookDetail = () => {
           className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors font-semibold"
         >
           ← Quay trở lại
-          </button>
+        </button>
       </div>
 
 

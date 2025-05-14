@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { supabase } from '../lib/supabaseClient'
 import BookCard from '../components/bookCard'
-
+import { Search } from 'lucide-react'
+import Chatbot from '../components/chatbot'
 const LIMIT = 16
 
 const CategoriesPage = () => {
@@ -49,7 +50,8 @@ const CategoriesPage = () => {
   const totalPages = Math.ceil(totalBooks / LIMIT)
 
   return (
-    <div className="flex px-4 md:px-16 py-10 gap-8">
+    <div className="flex px-4 md:px-16 py-10 gap-8 bg-gray-900">
+      <Chatbot/>
       {/* Left sidebar */}
       <aside className="w-1/4 space-y-3 bg-gradient-to-br from-black to-green-900 rounded-lg">
         <h2 className="text-2xl font-bangers text-left p-4  text-white"> Thể loại</h2>
@@ -76,10 +78,15 @@ const CategoriesPage = () => {
 
       {/* Right content */}
       <main className="w-3/4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-3xl font-bangers text-white">
-            {selectedCategory ? '📚 Sách theo thể loại' : '📚 Tất cả sách'}
-          </h2>
+        <div className="flex justify-between items-center mb-4  rounded-lg py-4">
+        <div className="relative flex items-center w-full mx-4 ">
+          <input
+            type="text"
+            placeholder="Tìm kiếm..."
+            className="bg-gray-900 text-white rounded-full py-2 pl-5 pr-4 w-full border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600"
+          />
+          <Search size={20} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
+        </div>
 
           {/* Sort Dropdown */}
           <select

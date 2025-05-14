@@ -1,28 +1,24 @@
-// src/services/groqService.js
-import axios from 'axios';
 
-const GROQ_API_KEY = "";
-const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+export const askBookQuestion = async (question, book) => {
+  const response = await fetch('http://localhost:8000/ask', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ question, book }),
+  });
 
-export const getGroqResponse = async (messages) => {
-  try {
-    const response = await axios.post(
-      GROQ_API_URL,
-      {
-        model: 'llama-3.3-70b-versatile', // Model Groq hỗ trợ
-        messages,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${GROQ_API_KEY}`,
-        },
-      }
-    );
+  const data = await response.json();
+  return data.answer;
+};
 
-    return response.data.choices[0].message.content;
-  } catch (error) {
-    console.error('Error from Groq:', error);
-    return 'Xin lỗi, tôi gặp lỗi khi xử lý yêu cầu.';
-  }
+export const searchBooks = async (query) => {
+  const response = await fetch('http://localhost:8000/query', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query }),
+  });
+
+  const data = await response.json();
+  return data;
 };
