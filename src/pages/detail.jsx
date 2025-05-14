@@ -64,7 +64,7 @@ const BookDetail = () => {
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 0.5, delay: 0.3 }}
   >
-    {book.title && <Chatbot context={book} />}
+    {book.title && <Chatbot book={book} />}
     <div>
       <h1 className="text-3xl font-bold text-white font-bangers tracking-wide">
         {book.title}
