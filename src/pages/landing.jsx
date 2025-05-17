@@ -23,35 +23,35 @@ const LandingPage = () => {
   ];
   return (
         <>
-    <section className="h-[670px] flex flex-col md:flex-row  justify-center bg-black font-">
+    <section className=" flex  md:flex-row  justify-center bg-black font-">
       {/* Text Content - Left Side */}
     <div className='bg-emerald-900/40 from-black bg-gradient-to-l w-1/2 p-6'>
-          <div className="md:w-full space-y-6 text-center md:text-left items-center flex flex-col justify-center h-full">
-        <h1 className="text-4xl md:text-5xl font-bold text-white">
+          <div className=" space-y-6 text-center md:text-left items-center flex flex-col justify-center h-full">
+        <h1 className=" md:text-5xl font-bold text-white">
           Chào mừng đến với Grimoire
         </h1>
-        <p className="text-lg md:text-xl text-gray-200 pb-2">
+        <p className="text-xs lg:text-lg md:text-xl text-gray-200 pb-2">
             Nơi bạn có thể khám phá và tìm kiếm những cuốn sách yêu thích của mình.
             <br />
             Tìm kiếm sách với AI và nhận những gợi ý phù hợp nhất với bạn.
         </p>
-        <div className="relative flex items-center w-full mx-4 text-lg">
+        <div className="relative flex items-center w-full mx-0 md:mx-4  text-sm lg:text-lg">
         <input
             type="text"
             placeholder="Tìm kiếm..."
-            className="w-full bg-gray-900 text-white rounded-full py-2 pl-5 pr-4 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600"
+            className="w-full bg-gray-900 text-white rounded-full md:py-2 pl-5 pr-4 border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600"
         />
-        <Search size={24} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
+        <Search size={24} className="scale-50 md:scale-100 text-sm absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
         </div>
       </div>
     </div>
       
       {/* Image - Right Side */}
-      <div className="md:w-1/2 ">
+      <div className="w-1/2  ">
         <img
           src="./src/assets/grimoire.png"
           alt="Landing page illustration"
-          className=" w-[670px] h-auto object-cover rounded-lg shadow-lg absolute right-0"
+          className="w-full h-auto object-cover rounded-lg shadow-lg right-0"
         />
       </div>
     </section>

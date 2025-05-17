@@ -66,7 +66,7 @@ const Home = () => {
   )
 
   const { data: newBooks, loading } = useFetch('Book', {
-    orderBy: { column: 'publish_date', ascending: false },
+    orderBy: { column: 'created_at', ascending: false },
     limit: 8,
   })
 
