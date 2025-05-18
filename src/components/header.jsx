@@ -33,7 +33,8 @@ const Header = () => {
 
           {user && (
               <div className="ml-8 space-x-4 relative text-white flex items-center">
-           <ShoppingBag />
+              <Link to="/cart"> <ShoppingBag/></Link>
+          
             <div className='group '>
              <CircleUserRound className='inline-block' />
             <p className='w-18 inline-block ml-2 font-bold'> {getLastName(user.user_metadata?.full_name) || user.email}</p>
