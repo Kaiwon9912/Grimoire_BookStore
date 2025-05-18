@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Chatbot from '../components/chatbot';
 import { useFetch } from '../hooks/useFetch';
 import { useCart } from './cartContext';
-
+import {Star} from 'lucide-react'
 const BookDetail = () => {
   const { book_id } = useParams();
 
