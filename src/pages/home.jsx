@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+
 import { useKeenSlider } from 'keen-slider/react'
-import { supabase } from '../lib/supabaseClient'
+
 import BookCard from '../components/bookCard'
 import 'keen-slider/keen-slider.min.css'
 import { useFetch } from '../hooks/useFetch'
@@ -71,7 +71,7 @@ const Home = () => {
   })
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 bg-gray-900">
       {/* Carousel Banner */}
       <div ref={sliderRef} className="keen-slider rounded-xl overflow-hidden shadow-lg">
         {bannerImages.map((banner) => (

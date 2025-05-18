@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const BookCard = ({ book }) => (
-  <Link to={`/book/${book.id}`} className="relative w-32 group transition skew-y-3  border-t-4 border-r-8 border-gray-200  ">
+  <Link to={`/book/${book.book_id}`} className="relative w-32 group transition skew-y-3  border-t-4 border-r-8 border-gray-200  ">
     <div className="book-card-container h-48 relative">
 
       <div className="absolute inset-0 bg-slate-50 flex flex-col justify-between p-3 space-y-1 z-10">

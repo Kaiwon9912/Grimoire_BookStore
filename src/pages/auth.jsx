@@ -3,7 +3,11 @@ import { supabase } from '../lib/supabaseClient';
 import LabeledInput from '../features/auth/labeInput';
 import {ArrowLeft} from 'lucide-react';
 import {ArrowRight} from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
+
 export default function Auth() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
@@ -35,9 +39,17 @@ export default function Auth() {
   };
 
   const signUp = async () => {
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: fullName, 
+      },
+    },
+  });
     if (error) alert(error.message);
-    else alert('Check your email for confirmation!');
+    else  navigate('/verify-email');
   };
 
   const signIn = async () => {
@@ -46,7 +58,7 @@ export default function Auth() {
     else alert('Đăng nhập thành công!');
   };
 
-  return (
+ return (
     <div className='relative h-screen w-screen bg-cover bg-center bg-[url(https://www.wallpapergap.com/cdn/24/176/aesthetic-book-wallpaper-1920x1200.jpg)]'>
       <div className='absolute inset-0 bg-black opacity-50'></div>
 
@@ -73,10 +85,19 @@ export default function Auth() {
                     page.isCover ? ' bg-no-repeat bg-cover bg-[url(/src/assets/cover.png)] text-white' : 'bg-cover bg-[url(https://media.istockphoto.com/id/1299389385/photo/vintage-white-paper-texture.jpg?s=612x612&w=0&k=20&c=S85UZFYGC8iYqFBnB2G5dJjuTUdFNujuDNcCKlbLExo=)]'
                   }`}
                 >
-                  <h2 className='text-3xl font-greatvb text-center mt-10 mb-4'>{page.title}</h2>
-                  <p className='text-center'>{page.content}</p>
+                  {index === 0 && (
+                    <div className='flex flex-col items-center justify-center h-full'>
+
+                      <img className='opacity-80' src='https://static.vecteezy.com/system/resources/thumbnails/036/626/964/small_2x/ai-generated-gold-star-on-transparent-background-png.png'/>
+                    </div>
+          
+                    )}
+
                  {index === 1 && (
+                  
                 <div className='mt-6 flex flex-col gap-2'>
+                 <h2 className='text-3xl font-greatvb text-center mt-10 mb-4'>{page.title}</h2>
+                  <p className='text-center pb-5'>{page.content}</p>
                   <LabeledInput
                     label='Họ và tên'
                     name='fullName'
@@ -123,12 +144,19 @@ export default function Auth() {
                     </button>
                     <div className='absolute bottom-32 right-6 text-center'>
                        
-                      <p className='text-2xl text-gray-500 mt-2 font-allura'>
+                      <div className='absolute -top-8 right-5 text-2xl text-gray-500 font-allura    border-yellow-900'>
                         {
                          
                            firstName 
                         }
-                      </p>
+                        {firstName.length > 0 && (
+                             <div className='w-full  bottom-1 rounded-l-lg -right-3 absolute border-b-2 border-r-2 border-yellow-900 h-4 rounded-r-xl px-2'>
+                               </div>
+                         )}
+              
+
+                    
+                      </div>
                       <p>
                         {fullName}
                       </p>
@@ -137,15 +165,20 @@ export default function Auth() {
                 )}
 
                   {index === 2 && (
+                    
                     <div className='mt-6 flex flex-col gap-2'>
-                      <input
+                  <h2 className='text-3xl font-greatvb text-center mt-10 mb-4'>{page.title}</h2>
+                  <p className='text-center pb-4'>{page.content}</p>
+                      <LabeledInput
+                      label={'Email'}
                         type='email'
                         placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className='p-2 rounded-md border'
                       />
-                      <input
+                      <LabeledInput
+                        label={'Mật khẩu'}
                         type='password'
                         placeholder='Mật khẩu'
                         value={password}
@@ -156,7 +189,7 @@ export default function Auth() {
                         
                         <button
                           onClick={signIn}
-                          className='bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded '
+                          className='absolute bottom-5 w-20 h-20 right-5  rounded-full hover:bg-emerald-500 text-yellow-900 shadow-lg -skew-y-6 border-yellow-900 border-2 font-bangers hover:text-white '
                         >
                           Đăng nhập
                         </button>
@@ -191,7 +224,7 @@ export default function Auth() {
 
                 {/* Mặt sau (trống hoặc thêm gì đó nếu cần) */}
                 <div className='absolute w-full  h-full rounded-lg shadow-lg bg-[url(https://media.istockphoto.com/id/1299389385/photo/vintage-white-paper-texture.jpg?s=612x612&w=0&k=20&c=S85UZFYGC8iYqFBnB2G5dJjuTUdFNujuDNcCKlbLExo=)] text-white p-8 [transform:rotateY(180deg)] [backface-visibility:hidden]'>
-         
+
                 </div>
               </div>
             );

@@ -10,7 +10,7 @@ export default function LabeledInput({
 }) {
   return (
     <div className='flex items-center gap-3 mb-4'>
-      <label htmlFor={name} className='w-24  text-yellow-900 font-playwrite'>
+      <label htmlFor={name} className='w-24  text-yellow-900 font-playwrite opacity-80'>
         {label}
       </label>
       <input
