@@ -11,6 +11,7 @@ import VerifyEmail from './pages/verifyEmail';
 import { AuthProvider, useAuth } from './context/authContext';
 import { AnimatePresence } from 'framer-motion';
 import CheckoutPage from './pages/checkoutPage'
+import CartPage from'./pages/cart'
 function AppContent() {
   const location = useLocation();
   const hideLayoutRoutes = ['/login', '/verify-email']; // Add any other routes to hide header/footer
