@@ -3,6 +3,11 @@ import { BookText, Search, ShoppingBag, CircleUserRound } from 'lucide-react';
 import { useAuth } from '../context/authContext';
 import { supabase } from '../lib/supabaseClient';
 const Header = () => {
+    const getLastName = (name) => {
+    if (!name) return "";
+    const parts = name.trim().split(" ");
+    return parts[parts.length - 1];
+  };
   const { user } = useAuth();
 
     const handleLogout = async () => {
@@ -31,7 +36,7 @@ const Header = () => {
            <ShoppingBag />
             <div className='group '>
              <CircleUserRound className='inline-block' />
-            <p className='w-18 inline-block ml-2'> {user.user_metadata?.full_name || user.email}</p>
+            <p className='w-18 inline-block ml-2 font-bold'> {getLastName(user.user_metadata?.full_name) || user.email}</p>
              <ul className='h-0 z-50 overflow-hidden absolute group-hover:h-24 transtion duration-300 bg-black  w-full text-center '>
                <li className='p-2 border-green-600 border-b-1 hover:bg-slate-600'>Thông tin</li>
                <li className='p-2 hover:bg-red-600' onClick={handleLogout}>Đăng xuất</li>

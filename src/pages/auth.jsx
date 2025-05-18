@@ -55,7 +55,7 @@ export default function Auth() {
   const signIn = async () => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) alert(error.message);
-    else alert('Đăng nhập thành công!');
+    else navigate('/home')
   };
 
  return (
