@@ -4,8 +4,12 @@ import Chatbot from '../components/chatbot';
 import { useFetch } from '../hooks/useFetch';
 import { useCart } from './cartContext';
 import { Star } from 'lucide-react'
+
 const BookDetail = () => {
+
   const { book_id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const {
     data: book,
@@ -123,7 +127,12 @@ const BookDetail = () => {
               className="mt-6 bg-gradient-to-br from-[#006400] to-[#1c2526] border-2 border-[#006400] text-white py-3 px-6 rounded-lg hover:bg-[#004d00] transition-colors font-bangers"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => alert('Đã thêm vào giỏ hàng!')}
+              onClick={() => addToCart({
+                id: book.id,
+                title: book.title,
+                price: book.price,
+                cover_url: book.cover_url, // ✅ dùng tên đúng như trong CartContext
+              })}
             >
               Thêm vào giỏ hàng
             </motion.button>
