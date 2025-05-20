@@ -12,6 +12,7 @@ import { AuthProvider, useAuth } from './context/authContext';
 import { AnimatePresence } from 'framer-motion';
 import CheckoutPage from './pages/checkoutPage'
 import CartPage from'./pages/cart'
+import Profile from './pages/profile'
 function AppContent() {
   const location = useLocation();
   const hideLayoutRoutes = ['/login', '/verify-email']; // Add any other routes to hide header/footer
@@ -27,10 +28,10 @@ function AppContent() {
             <Route path="/home" element={<Home />} />
             <Route path="/book/:book_id" element={<BookDetail />} />
             <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/login" element={<Auth />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
+            <Route path="/login" element={<Auth />} />            <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AnimatePresence>
       </main>

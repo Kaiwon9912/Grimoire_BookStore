@@ -48,9 +48,10 @@ const Header = () => {
 
             <div className='group '>
               <CircleUserRound className='inline-block' />
-              <p className='w-18 inline-block ml-2 font-bold'> {getLastName(user.user_metadata?.full_name) || user.email}</p>
-              <ul className='h-0 z-50 overflow-hidden absolute group-hover:h-24 transtion duration-300 bg-black  w-full text-center '>
-                <li className='p-2 border-green-600 border-b-1 hover:bg-slate-600'>Thông tin</li>
+              <p className='w-18 inline-block ml-2 font-bold'> {getLastName(user.user_metadata?.full_name) || user.email}</p>              <ul className='h-0 z-50 overflow-hidden absolute group-hover:h-24 transtion duration-300 bg-black  w-full text-center '>
+                <Link to="/profile">
+                  <li className='p-2 border-green-600 border-b-1 hover:bg-slate-600'>Thông tin</li>
+                </Link>
                 <li className='p-2 hover:bg-red-600' onClick={handleLogout}>Đăng xuất</li>
               </ul>
 
