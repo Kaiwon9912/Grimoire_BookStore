@@ -58,7 +58,7 @@ const CategoriesPage = () => {
   const totalPages = Math.ceil(totalBooks / LIMIT);
 
   return (
-    <div className="flex px-4 md:px-16 py-10 gap-8 bg-slate-900">
+    <div className="flex px-4 md:px-16 py-10 gap-8 ">
       <Chatbot />
       {/* Left sidebar */}
       <aside className="w-1/4 space-y-3 bg-gradient-to-br from-black to-green-900/50 rounded-lg">

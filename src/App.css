@@ -1,9 +1,13 @@
 #root {
 
 
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE và Edge cũ */
+}
+
 
   
-  background: rgb(27, 27, 27);
   
 }
 

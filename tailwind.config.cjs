@@ -17,5 +17,22 @@ module.exports = {
       ,
     },
   },
-  plugins: [],
+  plugins: [
+
+      function ({ addUtilities }) {
+      const newUtilities = {
+        '.no-scrollbar': {
+          /* Cho tất cả trình duyệt */
+          '-ms-overflow-style': 'none', /* IE và Edge */
+          'scrollbar-width': 'none',    /* Firefox */
+        },
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none',              /* Chrome, Safari và Opera */
+        },
+      };
+
+      addUtilities(newUtilities);
+    }
+
+  ],
 }
