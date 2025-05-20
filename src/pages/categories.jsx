@@ -51,7 +51,7 @@ const CategoriesPage = () => {
 
   return (
     <div className="flex px-4 md:px-16 py-10 gap-8 bg-gray-900">
-      <Chatbot/>
+      <Chatbot />
       {/* Left sidebar */}
       <aside className="w-1/4 space-y-3 bg-gradient-to-br from-black to-green-900 rounded-lg">
         <h2 className="text-2xl font-bangers text-left p-4  text-white"> Thể loại</h2>
@@ -79,14 +79,14 @@ const CategoriesPage = () => {
       {/* Right content */}
       <main className="w-3/4">
         <div className="flex justify-between items-center mb-4  rounded-lg py-4">
-        <div className="relative flex items-center w-full mx-4 ">
-          <input
-            type="text"
-            placeholder="Tìm kiếm..."
-            className="bg-gray-900 text-white rounded-full py-2 pl-5 pr-4 w-full border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600"
-          />
-          <Search size={20} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
-        </div>
+          <div className="relative flex items-center w-full mx-4 ">
+            <input
+              type="text"
+              placeholder="Tìm kiếm..."
+              className="bg-gray-900 text-white rounded-full py-2 pl-5 pr-4 w-full border border-green-600 focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
+            <Search size={20} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-green-400" />
+          </div>
 
           {/* Sort Dropdown */}
           <select
@@ -117,9 +117,8 @@ const CategoriesPage = () => {
               <button
                 key={i + 1}
                 onClick={() => setPage(i + 1)}
-                className={`px-4 py-2 rounded-lg ${
-                  page === i + 1 ? 'bg-green-700 text-white' : 'bg-gray-700 text-gray-300 hover:bg-green-600'
-                }`}
+                className={`px-4 py-2 rounded-lg ${page === i + 1 ? 'bg-green-700 text-white' : 'bg-gray-700 text-gray-300 hover:bg-green-600'
+                  }`}
               >
                 {i + 1}
               </button>

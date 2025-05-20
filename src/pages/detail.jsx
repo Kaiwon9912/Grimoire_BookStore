@@ -80,7 +80,7 @@ const BookDetail = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             {book?.title && book?.description && (
-              <Chatbot context={book} />
+              <Chatbot book={book} />
             )}
             <div>
               <h1 className="text-3xl font-bold text-white font-bangers tracking-wide">

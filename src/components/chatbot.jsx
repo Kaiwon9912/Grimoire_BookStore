@@ -29,47 +29,47 @@ const Chatbot = ({ book }) => {
     scrollToBottom();
   }, [messages]);
 
- const handleSendMessage = async (presetText) => {
-  const textToSend = presetText || inputText;
-  if (!textToSend.trim()) return;
+  const handleSendMessage = async (presetText) => {
+    const textToSend = presetText || inputText;
+    if (!textToSend.trim()) return;
 
-  const userMessage = {
-    id: messages.length + 1,
-    text: textToSend,
-    isBot: false,
-  };
-
-  setMessages((prev) => [...prev, userMessage]);
-  setInputText('');
-
-  try {
-    let botReply;
-
-    if (mode === 'ask') {
-      botReply = await askBookQuestion(textToSend, book);
-    } else {
-      const result = await searchBooks(textToSend);
-      botReply = result.answer;
-    }
-
-    const botMessage = {
-      id: messages.length + 2,
-      text: botReply,
-      isBot: true,
+    const userMessage = {
+      id: messages.length + 1,
+      text: textToSend,
+      isBot: false,
     };
 
-    setMessages((prev) => [...prev, botMessage]);
-  } catch (error) {
-    setMessages((prev) => [
-      ...prev,
-      {
+    setMessages((prev) => [...prev, userMessage]);
+    setInputText('');
+
+    try {
+      let botReply;
+
+      if (mode === 'ask') {
+        botReply = await askBookQuestion(textToSend, book);
+      } else {
+        const result = await searchBooks(textToSend);
+        botReply = result.answer;
+      }
+
+      const botMessage = {
         id: messages.length + 2,
-        text: '❌ Có lỗi xảy ra khi gửi câu hỏi.',
+        text: botReply,
         isBot: true,
-      },
-    ]);
-  }
-};
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: messages.length + 2,
+          text: '❌ Có lỗi xảy ra khi gửi câu hỏi.',
+          isBot: true,
+        },
+      ]);
+    }
+  };
 
 
   return (
@@ -120,52 +120,51 @@ const Chatbot = ({ book }) => {
                     key={message.id}
                     className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
                   >
-                <div
-                  className={`max-w-[70%] p-2 rounded-lg font-playwrite ${
-                    message.isBot ? 'bg-amber-200 text-gray-800' : 'bg-amber-800 text-white'
-                  }`}
-                >
-                  {message.isBot ? (
-                    <ReactMarkdown
-                      components={{
-                        p: ({ children }) => <p className="mb-2">{children}</p>,
-                        a: ({ href, children }) => (
-                          <a
-                            href={href}
-                            className="underline text-blue-700 hover:text-blue-900"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {children}
-                          </a>
-                        ),
-                      }}
+                    <div
+                      className={`max-w-[70%] p-2 rounded-lg font-playwrite ${message.isBot ? 'bg-amber-200 text-gray-800' : 'bg-amber-800 text-white'
+                        }`}
                     >
-                      {message.text}
-                    </ReactMarkdown>
-                  ) : (
-                    <>{message.text}</>
-                  )}
-                </div>
+                      {message.isBot ? (
+                        <ReactMarkdown
+                          components={{
+                            p: ({ children }) => <p className="mb-2">{children}</p>,
+                            a: ({ href, children }) => (
+                              <a
+                                href={href}
+                                className="underline text-blue-700 hover:text-blue-900"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {children}
+                              </a>
+                            ),
+                          }}
+                        >
+                          {message.text}
+                        </ReactMarkdown>
+                      ) : (
+                        <>{message.text}</>
+                      )}
+                    </div>
                   </div>
                 ))}
                 <div ref={chatEndRef} />
               </div>
 
-             
+
 
               {/* Input */}
               <div className="py-4 bg-amber-100 flex items-center space-x-2">
-                 <div className="">
-                <select
-                  value={mode}
-                  onChange={(e) => setMode(e.target.value)}
-                  className="bg-orange-900 text-white p-2"
-                >
-                  <option value="ask">Hỏi</option>
-                  <option value="search">Tìm</option>
-                </select>
-              </div>
+                <div className="">
+                  <select
+                    value={mode}
+                    onChange={(e) => setMode(e.target.value)}
+                    className="bg-orange-900 text-white p-2"
+                  >
+                    <option value="ask">Hỏi</option>
+                    <option value="search">Tìm</option>
+                  </select>
+                </div>
                 <input
                   type="text"
                   value={inputText}
