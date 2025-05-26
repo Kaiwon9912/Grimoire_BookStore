@@ -27,7 +27,7 @@ const Header = () => {
         <nav className="space-x-10 text-white font-semibold font-bangers tracking-wider text-lg flex">
           <Link to="/home" className="hover:underline">Trang chủ</Link>
           <Link to="/categories" className="hover:underline">Thể loại</Link>
-          <Link to="/" className="hover:underline">Chatbook</Link>
+          <Link to="/chatbook" className="hover:underline">Chatbook</Link>
           {
             user == null && (
               <Link to="/login" className="hover:underline text-green-400 hover:text-green-500 animate-bounce">Đăng nhập</Link>

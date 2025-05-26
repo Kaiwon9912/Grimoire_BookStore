@@ -11,9 +11,9 @@ export const useFetch = (table, options = {}) => {
     const fetchData = async () => {
       setLoading(true);
       setError(null);
-
+      
       try {
-          let query = supabase.from(table).select(select || '*');
+        let query = supabase.from(table).select(select || '*', { foreignTable: undefined });
 
         if (match) {
           query = query.match(match);

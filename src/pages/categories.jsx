@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabaseClient';
 import BookCard from '../components/bookCard';
 import { Search, X } from 'lucide-react';
 import Chatbot from '../components/chatbot';
+import CarouselBanner from '../components/carouselBanner';
 
 const LIMIT = 24;
 
@@ -91,6 +92,7 @@ const CategoriesPage = () => {
 
       {/* Right content */}
       <main className="w-3/4">
+      <CarouselBanner/>
         <div className="flex justify-between items-center mb-4 rounded-lg py-4">
           <div className="relative flex items-center w-full mx-4">
             <input
@@ -139,7 +141,7 @@ const CategoriesPage = () => {
         ) : books.length === 0 ? (
           <p className="text-white">Không tìm thấy sách</p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="ml-5 grid grid-cols-2 md:grid-cols-4 gap-4">
             {books.map((book) => (
               <BookCard key={book.book_id} book={book} />
             ))}

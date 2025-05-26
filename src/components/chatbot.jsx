@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { BookA, X, Send } from 'lucide-react';
-import { askBookQuestion, searchBooks, handleQuery } from '../services/groqService';
+import {  handleQuery } from '../services/chatbotService';
 import ReactMarkdown from 'react-markdown';
 
 

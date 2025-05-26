@@ -12,9 +12,10 @@ import { AuthProvider, useAuth } from './context/authContext';
 import { AnimatePresence } from 'framer-motion';
 import CheckoutPage from './pages/checkoutPage'
 import CartPage from'./pages/cart'
+import ChatPage from './pages/chatPage';
 function AppContent() {
   const location = useLocation();
-  const hideLayoutRoutes = ['/login', '/verify-email']; // Add any other routes to hide header/footer
+  const hideLayoutRoutes = ['/login', '/verify-email', '/chatbook']; // Add any other routes to hide header/footer
   const hideLayout = hideLayoutRoutes.includes(location.pathname);
 
   return (
@@ -31,6 +32,7 @@ function AppContent() {
             <Route path="/verify-email" element={<VerifyEmail />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
+             <Route path="/chatbook" element={<ChatPage />} />
           </Routes>
         </AnimatePresence>
       </main>

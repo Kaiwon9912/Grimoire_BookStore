@@ -45,17 +45,14 @@ const BookDetail = () => {
 
 return (
   <>
-    <div className="flex justify-start px-4 mt-4">
-      <button
-        onClick={() => navigate(-1)}
-        className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors font-semibold"
-      >
-        ← Quay trở lại
-      </button>
+    <div className="max-w-7xl text-sm m-auto  mt-5 p-2 text-white font-bold tracking-wide ">
+  
+        Trang chủ  { book.categoryId || 'Không xác định'}
+
     </div>
 
     <motion.div
-      className="m-4 mt-10"
+      className="m-4 mt-3"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -123,8 +120,8 @@ return (
             <span className="ml-2 text-[#aaaaaa] font-bangers">{rating.toFixed(1)}</span>
           </div>
 
-          <p className="text-2xl text-[#006400] font-semibold mt-4 font-bangers">
-            {book.price ? `${book.price.toLocaleString()} ₫` : 'Liên hệ'}
+          <p className="text-2xl text-green-500 font-semibold mt-4 font-bangers">
+            {book.price ? `${book.price.toLocaleString('de-DE')} ₫` : 'Liên hệ'}
           </p>
 
           <div className="grid grid-cols-2 mt-4 text-white  rounded-lg p-4">
