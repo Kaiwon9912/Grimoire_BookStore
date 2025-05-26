@@ -49,7 +49,7 @@ const LandingPage = () => {
       {/* Image - Right Side */}
       <div className="w-1/2  ">
         <img
-          src="./src/assets/grimoire.png"
+          src="./grimoire.png"
           alt="Landing page illustration"
           className="w-full h-auto object-cover rounded-lg shadow-lg right-0"
         />

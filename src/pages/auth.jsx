@@ -88,7 +88,7 @@ export default function Auth() {
                   {index === 0 && (
                     <div className='flex flex-col items-center justify-center h-full'>
 
-                      <img className='opacity-80' src='/src/assets/star.webp'/>
+                      <img className='opacity-80' src='./star.webp'/>
                     </div>
           
                     )}

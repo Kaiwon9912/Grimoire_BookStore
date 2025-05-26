@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function VerifyEmail() {
   return (
-    <div className="flex items-center justify-center h-screen bg-[url(/src/assets/mailbox.jpg)] bg-cover bg-center">
+    <div className="flex items-center justify-center h-screen bg-[url(./mailbox.jpg)] bg-cover bg-center">
       <div className="bg-black bg-opacity-70 p-10 rounded-lg text-white text-center shadow-lg max-w-md">
         <h1 className="text-3xl font-bold mb-4">📧 Xác nhận email</h1>
         <p className="mb-6">
