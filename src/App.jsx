@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
-import Home from './pages/home';
+
 import BookDetail from './pages/detail';
 import CategoriesPage from './pages/categories';
 import LandingPage from './pages/landing';
@@ -25,7 +25,6 @@ function AppContent() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<Home />} />
             <Route path="/book/:book_id" element={<BookDetail />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/login" element={<Auth />} />

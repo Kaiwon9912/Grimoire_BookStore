@@ -55,11 +55,11 @@ export default function Auth() {
   const signIn = async () => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) alert(error.message);
-    else navigate('/home')
+    else navigate('/categories');
   };
 
  return (
-    <div className='relative h-screen w-screen bg-cover bg-center bg-[url(https://www.wallpapergap.com/cdn/24/176/aesthetic-book-wallpaper-1920x1200.jpg)]'>
+    <div className='relative h-screen w-screen bg-cover bg-center bg-[url(./assets/bg.jpg)]'>
       <div className='absolute inset-0 bg-black opacity-50'></div>
 
      
@@ -82,13 +82,13 @@ export default function Auth() {
                 {/* Mặt trước */}
                 <div
                   className={`absolute w-full   h-full rounded-lg shadow-lg p-8 [backface-visibility:hidden] ${
-                    page.isCover ? ' bg-no-repeat bg-cover bg-[url(/src/assets/cover.png)] text-white' : 'bg-cover bg-[url(https://media.istockphoto.com/id/1299389385/photo/vintage-white-paper-texture.jpg?s=612x612&w=0&k=20&c=S85UZFYGC8iYqFBnB2G5dJjuTUdFNujuDNcCKlbLExo=)]'
+                    page.isCover ? ' bg-no-repeat bg-cover bg-[url(/src/assets/cover.png)] text-white' : 'bg-cover bg-[url(./assets/leather.jpg)]'
                   }`}
                 >
                   {index === 0 && (
                     <div className='flex flex-col items-center justify-center h-full'>
 
-                      <img className='opacity-80' src='https://static.vecteezy.com/system/resources/thumbnails/036/626/964/small_2x/ai-generated-gold-star-on-transparent-background-png.png'/>
+                      <img className='opacity-80' src='/src/assets/star.webp'/>
                     </div>
           
                     )}
@@ -222,8 +222,7 @@ export default function Auth() {
                   )}
                 </div>
 
-                {/* Mặt sau (trống hoặc thêm gì đó nếu cần) */}
-                <div className='absolute w-full  h-full rounded-lg shadow-lg bg-[url(https://media.istockphoto.com/id/1299389385/photo/vintage-white-paper-texture.jpg?s=612x612&w=0&k=20&c=S85UZFYGC8iYqFBnB2G5dJjuTUdFNujuDNcCKlbLExo=)] text-white p-8 [transform:rotateY(180deg)] [backface-visibility:hidden]'>
+                <div className='absolute w-full  h-full rounded-lg shadow-lg bg-[url(./assets/leather.jpg)] text-white p-8 [transform:rotateY(180deg)] [backface-visibility:hidden]'>
 
                 </div>
               </div>
