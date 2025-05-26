@@ -1,22 +1,11 @@
 
-export const askBookQuestion = async (question, book) => {
-  const response = await fetch('http://localhost:8000/ask', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ question, book }),
-  });
 
-  const data = await response.json();
-  return data.answer;
-};
 
-export const searchBooks = async (query) => {
-  const response = await fetch('http://localhost:8000/query', {
+export const handleQuery = async (prompt,book) => {
+  const response = await fetch('http://localhost:8000/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({ prompt }),
   });
 
   const data = await response.json();

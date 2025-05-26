@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 
 export const useFetch = (table, options = {}) => {
-  const { match, orderBy, limit, single } = options;
+  const { match, orderBy, limit, single, select } = options;
   const [data, setData] = useState(single ? null : []);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ export const useFetch = (table, options = {}) => {
       setError(null);
 
       try {
-        let query = supabase.from(table).select('*');
+          let query = supabase.from(table).select(select || '*');
 
         if (match) {
           query = query.match(match);

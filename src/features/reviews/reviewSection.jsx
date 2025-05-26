@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { Star } from 'lucide-react';
 
 import { useFetch } from '../../hooks/useFetch';
-
+import { supabase } from '../../lib/supabaseClient';
 const ReviewSection = ({ bookId, isLoggedIn }) => {
-  const { data: reviews, loading, error } = useFetch('Review', {
+  const { data: reviews, loading, error } = useFetch('reviews2', {
     match: { book_id: bookId },
+    limit: 10,
     orderBy: { column: 'created_at', ascending: false },
+    select: '*, customers(full_name)'
   });
 
   const [newReview, setNewReview] = useState('');
@@ -17,17 +19,17 @@ const ReviewSection = ({ bookId, isLoggedIn }) => {
     const { data: userData } = await supabase.auth.getUser();
     if (!userData?.user?.email) return;
 
-    const { error } = await supabase.from('Review').insert({
-      content: newReview,
-      rating,
-      book_id: bookId,
-      user_email: userData.user.email,
-    });
+      const { error } = await supabase.from('reviews2').insert({
+        user_id: userData.user.id, 
+        comment: newReview,
+        rating,                     
+        book_id: bookId,
 
+      });
     if (!error) {
       setNewReview('');
       setRating(5);
-      setRefresh((r) => !r); // trigger re-fetch bằng cách thay đổi key
+      setRefresh((r) => !r); 
     }
   };
 
@@ -120,7 +122,7 @@ const ReviewSection = ({ bookId, isLoggedIn }) => {
           {reviews?.map((review, idx) => (
             <div key={idx} className="border-t pt-4">
               <div className="text-sm font-semibold text-gray-700">
-                {review.user_email?.replace(/(.{2}).+(@.+)/, '$1******$2')}
+            {review.customers?.full_name || 'Ẩn danh'}
               </div>
               <div className="text-gray-400 text-xs">{new Date(review.created_at).toLocaleDateString()}</div>
               <div className="flex my-1">
@@ -133,7 +135,7 @@ const ReviewSection = ({ bookId, isLoggedIn }) => {
                   />
                 ))}
               </div>
-              <p className="text-gray-700">{review.content}</p>
+              <p className="text-white">{review.comment}</p>
             </div>
           ))}
         </div>

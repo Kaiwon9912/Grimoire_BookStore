@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { BookA, X, Send } from 'lucide-react';
-import { askBookQuestion, searchBooks } from '../services/groqService';
+import { askBookQuestion, searchBooks, handleQuery } from '../services/groqService';
 import ReactMarkdown from 'react-markdown';
 
 
 const Chatbot = ({ book }) => {
-  const [mode, setMode] = useState('ask'); // 'ask' hoặc 'search'
+  const [mode, setMode] = useState('ask'); 
 
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: 'Chào bạn! Tôi là Grimoire Bot. Hôm nay tôi có thể giúp gì?', isBot: true },
+    { id: 1, text: 'Chào bạn! Tôi là Grimoire Bot.  Bạn muốn tìm sách gì ?', isBot: true },
   ]);
   const [inputText, setInputText] = useState('');
   const chatEndRef = useRef(null);
@@ -45,12 +45,9 @@ const Chatbot = ({ book }) => {
     try {
       let botReply;
 
-      if (mode === 'ask') {
-        botReply = await askBookQuestion(textToSend, book);
-      } else {
-        const result = await searchBooks(textToSend);
-        botReply = result.answer;
-      }
+ 
+      botReply = await handleQuery(textToSend,book);
+
 
       const botMessage = {
         id: messages.length + 2,
@@ -155,16 +152,7 @@ const Chatbot = ({ book }) => {
 
               {/* Input */}
               <div className="py-4 bg-amber-100 flex items-center space-x-2">
-                <div className="">
-                  <select
-                    value={mode}
-                    onChange={(e) => setMode(e.target.value)}
-                    className="bg-orange-900 text-white p-2"
-                  >
-                    <option value="ask">Hỏi</option>
-                    <option value="search">Tìm</option>
-                  </select>
-                </div>
+
                 <input
                   type="text"
                   value={inputText}
