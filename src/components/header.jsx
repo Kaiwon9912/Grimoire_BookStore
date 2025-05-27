@@ -25,8 +25,8 @@ const Header = () => {
       </Link>
       <div className='flex'>
         <nav className="space-x-10 text-white font-semibold font-bangers tracking-wider text-lg flex">
-       
-          <Link to="/categories" className="hover:underline">Trang chủ</Link>
+
+          <Link to="/categories" className="hover:underline">Danh Mục</Link>
 
           {
             user == null && (
