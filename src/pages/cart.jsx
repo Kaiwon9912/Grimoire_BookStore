@@ -1,5 +1,5 @@
-import { useCart } from './cartContext';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from './cartContext';
 
 const Cart = () => {
     const { cartItems, updateQuantity, removeFromCart } = useCart();
@@ -33,7 +33,7 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {cartItems.map((item, index) => (
-                                    <tr key={index} className="border-t border-green-800 text-center">
+                                    <tr key={item.id} className="border-t border-green-800 text-center">
                                         <td className="py-2 px-4">{index + 1}</td>
                                         <td className="py-2 px-4">
                                             <img src={item.cover_url} alt={item.title} className="w-16 h-24 object-cover" />
