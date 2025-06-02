@@ -1,6 +1,4 @@
 
-
-
 export const handleQuery = async (prompt,book) => {
   const response = await fetch('http://localhost:8000/chat', {
     method: 'POST',
@@ -9,5 +7,6 @@ export const handleQuery = async (prompt,book) => {
   });
 
   const data = await response.json();
+  print(data)
   return data;
 };

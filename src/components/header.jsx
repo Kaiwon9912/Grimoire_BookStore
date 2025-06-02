@@ -27,14 +27,14 @@ const Header = () => {
         <nav className="space-x-10 text-white font-semibold font-bangers tracking-wider text-lg flex">
 
           <Link to="/categories" className="hover:underline">Danh Mục</Link>
-
+          <Link to="/chatbook" className="hover:underline">Chatbook</Link> 
           {
             user == null && (
               <Link to="/login" className="hover:underline text-green-400 hover:text-green-500 animate-bounce">Đăng nhập</Link>
             )
           }
         </nav>
-
+          
         {user && (
           <div className="ml-8 space-x-4 relative text-white flex items-center">
             <Link to="/cart" className="relative inline-block">
