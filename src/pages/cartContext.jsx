@@ -11,6 +11,8 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const { user } = useAuth();
     const { getOrCreatePendingOrder } = useOrder();
+    const [hasFetched, setHasFetched] = useState(false);
+
 
     // ✅ Tải giỏ hàng từ Supabase khi user đăng nhập
     const fetchCart = useCallback(async () => {
